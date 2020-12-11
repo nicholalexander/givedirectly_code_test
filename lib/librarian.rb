@@ -6,10 +6,10 @@ class Librarian
   end
 
   def full_catalogue_ids
-    @datastore.get_all_ids
+    @datastore.all_book_ids
   end
 
   def get_by_id(id)
-    @datastore.get_book_by_id(id)
+    @datastore.book_by_id(id)
   end
 end

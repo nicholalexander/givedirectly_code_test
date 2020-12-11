@@ -9,14 +9,14 @@ class TestDataStore < Minitest::Test
   end
 
   def test_that_books_is_populated_after_initialization
-    assert_equal @datastore.get_all_ids.length, 2
+    assert_equal @datastore.all_book_ids.length, 2
   end
 
   def test_get_book_by_id_returns_a_book_object
-    assert_equal @datastore.get_book_by_id(1).class, Book
+    assert_equal @datastore.book_by_id(1).class, Book
   end
 
   def test_get_book_by_id_returns_the_correct_book
-    assert_equal @datastore.get_book_by_id(1).title, 'Antic Hay'
+    assert_equal @datastore.book_by_id(1).title, 'Antic Hay'
   end
 end

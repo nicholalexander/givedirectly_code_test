@@ -16,11 +16,11 @@ class DataStore
     end
   end
 
-  def get_book_by_id(id)
+  def book_by_id(id)
     @books.find { |book| book.id == id }
   end
 
-  def get_all_ids
+  def all_book_ids
     @books.map(&:id)
   end
 end
