@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Librarian
   def initialize(datastore)
     @datastore = datastore

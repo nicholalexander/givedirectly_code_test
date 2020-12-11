@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 class DataStore
@@ -8,7 +10,7 @@ class DataStore
   end
 
   def load_books
-    @data = YAML.load(File.read(@data_path))
+    @data = YAML.safe_load(File.read(@data_path), permitted_classes: [Symbol])
     @data.each do |key, value|
       @books << Book.new(id: key, title: value[:title], timestamp: value[:timestamp])
     end

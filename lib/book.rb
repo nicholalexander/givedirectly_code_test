@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book
   attr_accessor :timestamp
   attr_reader :id
