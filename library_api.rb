@@ -26,3 +26,15 @@ end
 get '/request/:id' do
   librarian.get_by_id(params[:id].to_i).as_json.to_json
 end
+
+post '/request' do
+  checkout= JSON.parse(request.body.read)
+  result = librarian.handle_checkout(checkout)
+
+  case result[0]
+  when :access_denied
+    halt 403, result[1]
+  when :success
+    result[1].as_json.to_json
+  end
+end

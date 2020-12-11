@@ -12,7 +12,7 @@ namespace :bootstrap do
     until books.length == 10
       title = Faker::Book.title
       id += 1
-      books[id] = { title: title, timestamp: nil }
+      books[id] = { title: title, timestamp: nil, available: true }
     end
     File.open('data/data.yml', 'w') do |file|
       file.write books.to_yaml

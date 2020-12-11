@@ -1,5 +1,24 @@
 # Engineering Task for GiveDirectly
 
+## Running
+
+1. clone the repo
+2. bundle install
+3. `rake start` will start the sinatra app on (http://localhost:4567)
+
+The only routes that work right now are the index and the show.
+
+## Testing
+
+`rake`
+
+The app uses minitest to run unit tests and to test the sinatra side of things.
+
+## TODO
+
+- Make the sinatra app a regular modular style so that we can more easily inject a datastore for testing.
+
+
 ## First Thoughts
 
 Sinatra single file with endpoints.
@@ -25,9 +44,12 @@ return sets timestamp to nil.
 
 - [x] Setup Sinatra
 - [x] Setup fake data
-- [ ] index route of /request
-- [ ] show route of /request
-
+- [x] index route of /request
+- [x] show route of /request
+- [x] post request
+- [ ] email validator - ruby regex
+- [ ] delete request
+- [ ] datastore write books on post or delete
 
 ## Instructions
 
