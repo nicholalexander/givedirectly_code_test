@@ -1,101 +1,33 @@
 # Engineering Task for GiveDirectly
 
-## Running
+## Discussion 
+
+The app is set up as a sinatra app with three main classes.  A `Librarian` who knows how to work with `Book`s and with the `Datastore`.  The Librarian has the datastore (which I probably should've called Shelves!) injected so that as long as the datastore responds to the messages that the Librarian sends it, it will be easy to swap out with a postgres db or a redis store or whatever it is that you want to gussy this up with.
+
+The nice thing about this separation is that it is my hope that it keeps things very limited.  The library_api, the main file, should only worry about dealing with web requests and sending the librarian messages, the librarian shouldn't care about the data store, and the the librarian and the underlying functionality of the books should also be separated.
+
+One thing that was unclear from the instructions is what the successful result of a POST request did.  I had it indicate that the book was available which would be the signal to the client that their request was successful.  That way, if they make a post request, instead of denying it or raising an error, it will return the same data but with the available flag set to `false`.
+
+Right now, after every case of modifying the books, the datastore deserializes all the books and writes them to a yaml file.  This is obviously not very effecient, though with a different datastore one could improve this and it should be a fairly straight forward proceedure.
+
+I did not implement the DELETE route due to time constraints.  The procedure would involve marking the available flag as true, erasing the time stamp, and writing the books to the disk.  There are also so non-happy paths that I didn't handle: requesting a book that doesn't exist, and also making poorly formed requests.
+
+## Installation & Running
 
 1. clone the repo
 2. bundle install
 3. `rake start` will start the sinatra app on (http://localhost:4567)
 
-The only routes that work right now are the index and the show.
-
 ## Testing
 
 `rake`
 
-The app uses minitest to run unit tests and to test the sinatra side of things.
+The app uses minitest to run unit tests and to test the sinatra side of things, though the sinatra tests are in poor shape after a refactoring because I need to make it such that the datastore is injected into the sinatra app which requires moving from the basic Sinatra setup to the Modular one.
 
 ## TODO
 
-- Make the sinatra app a regular modular style so that we can more easily inject a datastore for testing.
-
-
-## First Thoughts
-
-Sinatra single file with endpoints.
-Ruby standardlib datastore.
-Librarian PORO.
-Authenticator PORO - Aka, validate email for right now.
-
-How will you handle books with the same title... aka: "Cats"
-How will you handle mutliple copies of the same book?
-
-
-Schema for Books:
-
-id:int
-available:boolean
-title:string
-timestamp:date/time book was requested
-
-status available if timestamp.nil?
-return sets timestamp to nil.
-
-## Steps
-
-- [x] Setup Sinatra
-- [x] Setup fake data
-- [x] index route of /request
-- [x] show route of /request
-- [x] post request
-- [ ] email validator - ruby regex
-- [ ] delete request
-- [ ] datastore write books on post or delete
-
-## Instructions
-
-Instructions: Implement a service that exposes the endpoints described below. This service is for a library, and we are adding a new ​/request endpoint which allows a user to request a book by title. Endpoints should accept and return valid JSON.  You may use Python/Flask, Ruby/Sinatra, or other reasonably mainstream language or microframework, with a datastore of your choice (Dockerized DB, sqlite3, flatfiles, etc., are all fine).
-
-Note: Please don’t spend much more than 3 hrs on this. If you hit the 3 hour mark and are not done, let us know in your documentation and write up what the remaining steps would have been. We are mainly looking to understand how you approach technical problems. 
-
-Deliverable: public git repo with codebase. Please include basic installation instructions.
-
-## Endpoints
-
-### Add request endpoint 
-This allows users to request a particular book. Ensure email is of a valid format and title exists in our list of titles in the database. Book titles in the library may be seeded and generated however you see fit.
-
-Request
-
-POST /request
-
-- email (string): Requesting user's email address
-- title (string): Desired book title
-
-Response
-
-- id (int): ID of the book
-- available (boolean): return whether a specific book is available (a book is available if it has not been requested by anyone)
-- title (string): Title of the book
-- timestamp (string): ISO-8601 formatted date/time the book was requested
-
-Retrieve request endpoint
-Allows users to retrieve/see an existing request by using an id, or a list of all existing requests if id is omitted.
-
-Request
-
-GET /request/ -or- GET /request/<id>
-
-Response
-
-If id isn't set, return all existing requests. Otherwise, return the specified request data.
-
-Delete request endpoint
-Allows a user to remove an existing request, making that book available.
-
-Request
-
-DELETE /request/<id>
-
-Response
-
-Empty response body
+- [ ] Implement returning books.
+- [ ] Error handling & edge cases.
+- [ ] Make the sinatra app a regular modular style so that we can more easily inject a datastore for testing.
+- [ ] Clarify rules for handling books of the same title
+- [ ] Discuss how to handle multiple copies of the same book, if at all.
