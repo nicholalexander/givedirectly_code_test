@@ -28,7 +28,7 @@ get '/request/:id' do
 end
 
 post '/request' do
-  checkout= JSON.parse(request.body.read)
+  checkout = JSON.parse(request.body.read)
   result = librarian.handle_checkout(checkout)
 
   case result[0]

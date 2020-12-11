@@ -12,9 +12,9 @@ class DataStore
   def load_books
     data = YAML.safe_load(File.read(@data_path), permitted_classes: [Symbol, Time])
     data.each do |key, value|
-      @books << Book.new(id: key, 
-                         title: value[:title], 
-                         timestamp: value[:timestamp], 
+      @books << Book.new(id: key,
+                         title: value[:title],
+                         timestamp: value[:timestamp],
                          available: value[:available])
     end
   end

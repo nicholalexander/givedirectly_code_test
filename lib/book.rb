@@ -21,7 +21,6 @@ class Book
     @timestamp = Time.now
   end
 
-
   def set_to_unavailable
     @available = false
   end
@@ -37,10 +36,9 @@ class Book
 
   def to_h
     {
-      title: @title, 
-      timestamp: @timestamp, 
+      title: @title,
+      timestamp: @timestamp,
       available: available?
     }
   end
-
 end
