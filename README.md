@@ -8,6 +8,25 @@ Librarian PORO.
 Authenticator PORO - Aka, validate email for right now.
 
 How will you handle books with the same title... aka: "Cats"
+How will you handle mutliple copies of the same book?
+
+
+Schema for Books:
+
+id:int
+available:boolean
+title:string
+timestamp:date/time book was requested
+
+status available if timestamp.nil?
+return sets timestamp to nil.
+
+## Steps
+
+- [x] Setup Sinatra
+- [x] Setup fake data
+- [ ] index route of /request
+- [ ] show route of /request
 
 
 ## Instructions
