@@ -10,3 +10,4 @@ gem "minitest"
 
 gem "faker"
 gem "pry"
+gem "rack-test"
