@@ -3,11 +3,11 @@ require 'yaml'
 require 'pry'
 require 'json'
 
-require_relative './library_api/book.rb'
-require_relative './library_api/datastore.rb'
-require_relative './library_api/librarian.rb'
+require_relative './lib/book.rb'
+require_relative './lib/datastore.rb'
+require_relative './lib/librarian.rb'
 
-librarian = Librarian.new(DataStore.new)
+librarian = Librarian.new(DataStore.new("data/data.yml"))
 
 before do
   content_type :json

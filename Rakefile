@@ -1,3 +1,4 @@
+require "rake/testtask"
 require 'pry'
 require 'faker'
 require 'yaml'
@@ -11,8 +12,23 @@ namespace :bootstrap do
       id += 1
       books[id] = {title: title, timestamp: nil}
     end
-    File.open("data/fake_data.yml","w") do |file|
+    File.open("data/data.yml","w") do |file|
       file.write books.to_yaml
     end 
   end
 end
+
+desc "Start API Application"
+task :start do
+  `ruby library_api.rb`
+end
+
+
+Rake::TestTask.new(:test) do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.test_files = FileList["test/**/test_*.rb"]
+end
+
+task :default => :test
+

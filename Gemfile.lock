@@ -8,6 +8,7 @@ GEM
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
+    minitest (5.14.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     pry (0.13.1)
@@ -30,6 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   faker
+  minitest
   pry
   rake
   sinatra

@@ -1,7 +1,6 @@
 class Librarian
   def initialize(datastore)
     @datastore = datastore
-    @books = @datastore.load_books
   end
 
   def full_catalogue_ids
