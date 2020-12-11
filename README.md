@@ -1,5 +1,17 @@
 # Engineering Task for GiveDirectly
 
+## First Thoughts
+
+Sinatra single file with endpoints.
+Ruby standardlib datastore.
+Librarian PORO.
+Authenticator PORO - Aka, validate email for right now.
+
+How will you handle books with the same title... aka: "Cats"
+
+
+## Instructions
+
 Instructions: Implement a service that exposes the endpoints described below. This service is for a library, and we are adding a new ​/request endpoint which allows a user to request a book by title. Endpoints should accept and return valid JSON.  You may use Python/Flask, Ruby/Sinatra, or other reasonably mainstream language or microframework, with a datastore of your choice (Dockerized DB, sqlite3, flatfiles, etc., are all fine).
 
 Note: Please don’t spend much more than 3 hrs on this. If you hit the 3 hour mark and are not done, let us know in your documentation and write up what the remaining steps would have been. We are mainly looking to understand how you approach technical problems. 
