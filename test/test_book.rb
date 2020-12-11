@@ -1,9 +1,9 @@
-require "minitest/autorun"
-require_relative "../lib/book.rb"
+require 'minitest/autorun'
+require_relative '../lib/book.rb'
 
 class TestBook < Minitest::Test
   def setup
-    @book = Book.new(id: 1, title: "A Test Book", timestamp: nil)
+    @book = Book.new(id: 1, title: 'A Test Book', timestamp: nil)
   end
 
   def test_that_book_is_available_when_timestamp_is_nil
@@ -17,7 +17,6 @@ class TestBook < Minitest::Test
   end
 
   def test_as_json_includes_all_fields
-    assert_equal @book.as_json, { id: 1, title: "A Test Book", available: true, timestamp: nil }
+    assert_equal @book.as_json, { id: 1, title: 'A Test Book', available: true, timestamp: nil }
   end
-
 end

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-ruby "2.7.1"
-source "https://rubygems.org"
+ruby '2.7.1'
+source 'https://rubygems.org'
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem "sinatra"
-gem "minitest"
+gem 'minitest'
+gem 'sinatra'
 
-gem "faker"
-gem "pry"
-gem "rack-test"
+gem 'faker'
+gem 'pry'
+gem 'rack-test'

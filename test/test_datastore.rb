@@ -1,9 +1,9 @@
-require "minitest/autorun"
-require_relative "../lib/datastore.rb"
+require 'minitest/autorun'
+require_relative '../lib/datastore.rb'
 
 class TestDataStore < Minitest::Test
   def setup
-    @datastore = DataStore.new("test/fixtures/books.yaml")
+    @datastore = DataStore.new('test/fixtures/books.yaml')
   end
 
   def test_that_books_is_populated_after_initialization
@@ -15,6 +15,6 @@ class TestDataStore < Minitest::Test
   end
 
   def test_get_book_by_id_returns_the_correct_book
-    assert_equal @datastore.get_book_by_id(1).title, "Antic Hay"
+    assert_equal @datastore.get_book_by_id(1).title, 'Antic Hay'
   end
 end

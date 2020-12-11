@@ -14,11 +14,11 @@ class Book
   end
 
   def as_json
-      {
-        id: @id,
-        title: @title,
-        available: available?,
-        timestamp: @timestamp
-      }
+    {
+      id: @id,
+      title: @title,
+      available: available?,
+      timestamp: @timestamp
+    }
   end
 end
