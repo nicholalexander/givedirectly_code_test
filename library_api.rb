@@ -1,18 +1,13 @@
 require 'sinatra'
 require 'yaml'
+require 'pry'
+require 'json'
 
-class Librarian
-  def initialize
-    @data = YAML.load(File.read("data/fake_data.yml"))
-  end
+require_relative './library_api/book.rb'
+require_relative './library_api/datastore.rb'
+require_relative './library_api/librarian.rb'
 
-  def full_catalogue
-    @data.keys
-  end
-end
-
-
-librarian = Librarian.new
+librarian = Librarian.new(DataStore.new)
 
 before do
   content_type :json
@@ -23,5 +18,10 @@ get '/' do
 end
 
 get '/request' do
-  librarian.full_catalogue.to_json
+  librarian.full_catalogue_ids.to_json
 end
+
+get '/request/:id' do
+  librarian.get_by_id(params[:id].to_i).as_json.to_json
+end
+
